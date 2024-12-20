@@ -46,13 +46,13 @@ html, body {
 /* Glassmorphism Background */
 .glass-bg {
     background: rgba(31, 41, 55, 0.6); /* Transparan abu-abu */
-    backdrop-filter: blur(10px); /* Blur efek */
+    backdrop-filter: blur(0px); /* Blur efek */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
     border-radius: 12px; /* Smooth corner */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Glow bayangan */
     padding: 2rem;
-    margin-bottom: 2rem; /* Spacing antar section */
+    margin-bottom: 1rem; /* Spacing antar section */
 }
 
 .trail-dot {
