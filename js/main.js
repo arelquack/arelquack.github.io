@@ -28,9 +28,24 @@ document.addEventListener('mousemove', (event) => {
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 });
 
+// Torus Geometry
+const torusGeometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+const torusMaterial = new THREE.MeshStandardMaterial({ color: 0x00ffff, wireframe: true });
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+scene.add(torus);
+
+// Lighting
+const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+pointLight.position.set(10, 10, 10);
+scene.add(pointLight);
+
 // Animation Loop
 function animate() {
     requestAnimationFrame(animate);
+
+    // Torus Rotation
+    torus.rotation.x += 0.01;
+    torus.rotation.y += 0.005;
 
     // Star Field
     starField.rotation.y += 0.001;
@@ -39,9 +54,28 @@ function animate() {
 }
 animate();
 
+// Custom Cursor
+const cursor = document.getElementById("cursor");
+
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+});
+
 // Responsive Resize
 window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+});
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from("#skills", {
+    scrollTrigger: "#skills",
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: "power2.out"
 });
